@@ -90,7 +90,6 @@ a {
 .hero__video,
 .hero__dither,
 .hero__grade,
-.hero__route,
 .hero__grain {
   position: absolute;
   inset: 0;
@@ -128,68 +127,6 @@ a {
     linear-gradient(90deg, rgba(13, 11, 9, 0.94) 0%, rgba(13, 11, 9, 0.58) 34%, rgba(13, 11, 9, 0.18) 68%, rgba(13, 11, 9, 0.52) 100%),
     linear-gradient(0deg, rgba(13, 11, 9, 0.85) 0%, rgba(13, 11, 9, 0.02) 46%, rgba(13, 11, 9, 0.4) 100%);
   pointer-events: none;
-}
-
-.hero__route {
-  z-index: -2;
-  pointer-events: none;
-  opacity: 0.1;
-  transform: translate3d(calc((var(--pointer-x, 0.5) - 0.5) * 14px), calc((var(--pointer-y, 0.5) - 0.5) * 10px), 0) scale(1.02);
-  transition: opacity 900ms ease, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero.is-complete .hero__route {
-  opacity: 0.52;
-}
-
-.route {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.route--ghost {
-  stroke: rgba(232, 224, 208, 0.26);
-  stroke-width: 1;
-  stroke-dasharray: 2 16;
-}
-
-.route--main {
-  stroke: var(--gold);
-  stroke-width: 2.2;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-
-.route--fine {
-  stroke: rgba(232, 224, 208, 0.62);
-  stroke-width: 0.75;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-
-.hero.is-complete .route--main,
-.hero.is-complete .route--fine {
-  animation: draw-route 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.atlas-node {
-  fill: var(--ink);
-  stroke: var(--gold);
-  stroke-width: 2;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: fill 180ms ease, transform 180ms ease, opacity 500ms ease;
-}
-
-.hero.is-complete .atlas-node {
-  opacity: 1;
-}
-
-.atlas-node.is-active {
-  fill: var(--gold-bright);
-  transform: scale(1.6);
 }
 
 .hero__grain {
@@ -610,6 +547,82 @@ a {
   padding: clamp(6rem, 12vw, 12rem) clamp(1.25rem, 8vw, 8rem);
 }
 
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.about-portrait {
+  width: min(100%, 28rem);
+  margin: 0;
+}
+
+.about-portrait__frame {
+  position: relative;
+  overflow: hidden;
+  padding: 0.75rem;
+  border: 1px solid var(--line-light);
+  background: #b9a98d;
+}
+
+.about-portrait__frame::before {
+  position: absolute;
+  inset: 0.4rem;
+  border: 1px solid rgba(232, 224, 208, 0.5);
+  content: '';
+  pointer-events: none;
+}
+
+.about-portrait picture,
+.about-portrait img {
+  display: block;
+  width: 100%;
+}
+
+.about-portrait img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.88) contrast(1.04);
+}
+
+.about-portrait__dither {
+  position: absolute;
+  z-index: 1;
+  inset: 0.75rem;
+  display: block;
+  width: calc(100% - 1.5rem);
+  height: calc(100% - 1.5rem);
+  opacity: 0;
+  image-rendering: pixelated;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transform: translate3d(var(--portrait-dither-shift-x, 0px), var(--portrait-dither-shift-y, 0px), 0) scale(1.015);
+  transition: opacity 260ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-portrait__frame.has-restoration .about-portrait__dither {
+  opacity: var(--portrait-dither-opacity, 0.58);
+}
+
+.about-portrait figcaption {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  color: rgba(13, 11, 9, 0.54);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.about-portrait figcaption span:last-child {
+  color: var(--bronze);
+}
+
 .about-copy {
   max-width: 48rem;
 }
@@ -716,12 +729,6 @@ a {
   transform: translateY(0);
 }
 
-@keyframes draw-route {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 @media (max-width: 820px) {
   .site-header {
     grid-template-columns: 1fr auto;
@@ -773,6 +780,10 @@ a {
   .about-facts {
     grid-template-columns: 1fr;
     gap: 1.4rem;
+  }
+
+  .about-layout {
+    gap: 2rem;
   }
 }
 
@@ -843,6 +854,14 @@ a {
     max-width: 10ch;
   }
 
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-portrait {
+    width: min(100%, 28rem);
+  }
+
   .work-row:hover,
   .work-row:focus-visible,
   .work-row.is-active,
@@ -886,11 +905,6 @@ a {
 
   .hero__dither {
     display: none;
-  }
-
-  .hero__route {
-    opacity: 0.7;
-    transform: none;
   }
 
   .hero__grade {

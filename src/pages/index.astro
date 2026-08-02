@@ -65,20 +65,6 @@ const notes = [
 
       <div class="hero__grade" aria-hidden="true"></div>
 
-      <svg
-        class="hero__route"
-        viewBox="0 0 1000 600"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path class="route route--ghost" d="M-35 452C105 422 140 340 267 360s157 83 286-89 193-121 307-40 166 20 220-92" />
-        <path class="route route--main" pathLength="1" d="M-35 452C105 422 140 340 267 360s157 83 286-89 193-121 307-40 166 20 220-92" />
-        <path class="route route--fine" pathLength="1" d="M-35 452C105 422 140 340 267 360s157 83 286-89 193-121 307-40 166 20 220-92" />
-        <circle class="atlas-node" data-node="01" cx="267" cy="360" r="7" />
-        <circle class="atlas-node" data-node="02" cx="553" cy="271" r="7" />
-        <circle class="atlas-node" data-node="03" cx="860" cy="231" r="7" />
-      </svg>
-
       <div class="hero__grain" aria-hidden="true"></div>
 
       <header class="site-header">
@@ -183,18 +169,39 @@ const notes = [
       <section class="about-section" id="about" data-reveal-section>
         <div class="section-grid section-grid--about">
           <p class="section-label">03 / Over mij</p>
-          <div class="about-copy">
-            <p class="about-lede">Ik hou van het moment waarop iets ingewikkelds bruikbaar wordt.</p>
-            <p>
-              Ik ben Jonathan, een technische student en bouwer uit Gent. Ik beweeg tussen software, beveiliging, systemen en ontwerp. Meestal begin ik met een vaag probleem en blijf ik eraan werken tot ik genoeg begrijp om iets te bouwen.
-            </p>
-            <p>
-              Ik verkies bewijs boven theater, een werkend prototype boven een perfect plan en gereedschap dat de volgende beslissing makkelijker maakt. Deze site is een levende index van waar ik mee bezig ben, geen afgewerkt verhaal.
-            </p>
-            <div class="about-facts" aria-label="Huidige feiten">
-              <div><span>In</span><strong>Gent, België</strong></div>
-              <div><span>Werkgebied</span><strong>Software · beveiliging · agents</strong></div>
-              <div><span>Nu</span><strong>Studeren · bouwen · testen</strong></div>
+          <div class="about-layout">
+            <figure class="about-portrait">
+              <div class="about-portrait__frame" data-portrait-frame>
+                <picture>
+                  <source srcset="/media/jonathan-portrait.webp" type="image/webp" />
+                  <img
+                    src="/media/jonathan-portrait.png"
+                    alt="Portret van Jonathan Núñez Dhondt aan een werktafel met kaarten, boeken en een globe."
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <canvas class="about-portrait__dither" data-portrait-dither aria-hidden="true"></canvas>
+              </div>
+              <figcaption>
+                <span>JND / GENT / DEEL 01</span>
+                <span>STUDIE · SYSTEMEN · BEVEILIGING</span>
+              </figcaption>
+            </figure>
+
+            <div class="about-copy">
+              <p class="about-lede">Ik hou van het moment waarop iets ingewikkelds bruikbaar wordt.</p>
+              <p>
+                Ik ben Jonathan, een technische student en bouwer uit Gent. Ik beweeg tussen software, beveiliging, systemen en ontwerp. Meestal begin ik met een vaag probleem en blijf ik eraan werken tot ik genoeg begrijp om iets te bouwen.
+              </p>
+              <p>
+                Ik verkies bewijs boven theater, een werkend prototype boven een perfect plan en gereedschap dat de volgende beslissing makkelijker maakt. Deze site is een levende index van waar ik mee bezig ben, geen afgewerkt verhaal.
+              </p>
+              <div class="about-facts" aria-label="Huidige feiten">
+                <div><span>In</span><strong>Gent, België</strong></div>
+                <div><span>Werkgebied</span><strong>Software · beveiliging · agents</strong></div>
+                <div><span>Nu</span><strong>Studeren · bouwen · testen</strong></div>
+              </div>
             </div>
           </div>
         </div>
