@@ -4,46 +4,46 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 const selectedWork = [
   {
     index: '01',
-    title: 'Agent systems',
-    discipline: 'Infrastructure / open source',
-    status: 'Active development',
+    title: 'Agentsystemen',
+    discipline: 'Infrastructuur / open source',
+    status: 'In ontwikkeling',
     description:
-      'Tools and interfaces for agents that can use context, act through software and remain understandable when something fails.',
-    role: 'Engineering · integration · systems thinking',
+      'Tools en interfaces voor agents die context kunnen gebruiken, via software kunnen handelen en begrijpelijk blijven wanneer er iets misgaat.',
+    role: 'Ontwikkeling · integratie · systeemdenken',
     href: 'https://github.com/jonathannd02',
-    label: 'Open profile',
+    label: 'Bekijk GitHub-profiel',
     external: true,
   },
   {
     index: '02',
-    title: 'Application security',
-    discipline: 'Research / field notes',
-    status: 'In progress',
+    title: 'Applicatiebeveiliging',
+    discipline: 'Onderzoek / veldnotities',
+    status: 'In opbouw',
     description:
-      'Learning by testing the boundary: labs, write-ups and the discipline of checking what a system actually does.',
-    role: 'Study · testing · documentation',
+      'Ik leer door grenzen te testen. Met labs, verslagen en de gewoonte om te controleren wat een systeem echt doet.',
+    role: 'Studie · testen · documentatie',
     href: '#notes',
-    label: 'Read the notes',
+    label: 'Lees de notities',
     external: false,
   },
   {
     index: '03',
-    title: 'Practical systems',
-    discipline: 'Web / automation / operations',
-    status: 'Ongoing',
+    title: 'Praktische systemen',
+    discipline: 'Web / automatisering / beheer',
+    status: 'Doorlopend',
     description:
-      'Small, useful systems are allowed to change. The method stays: understand the shape, make it useful, test it against reality.',
-    role: 'Design · implementation · refinement',
+      'Kleine systemen die een concreet probleem oplossen. Eerst begrijpen, dan bouwen, daarna testen of het buiten mijn hoofd ook werkt.',
+    role: 'Ontwerp · bouwen · bijsturen',
     href: '#about',
-    label: 'How I work',
+    label: 'Zo werk ik',
     external: false,
   },
 ];
 
 const notes = [
-  { number: '01', type: 'Security', title: 'What the surface does not tell you', meta: 'Field note / 2026' },
-  { number: '02', type: 'Systems', title: 'Useful before impressive', meta: 'Working principle' },
-  { number: '03', type: 'Learning', title: 'Make the failure legible', meta: 'In progress' },
+  { number: '01', type: 'Beveiliging', title: 'Wat de buitenkant je niet vertelt', meta: 'Veldnotitie / 2026' },
+  { number: '02', type: 'Systemen', title: 'Eerst bruikbaar, dan indrukwekkend', meta: 'Werkprincipe' },
+  { number: '03', type: 'Leren', title: 'Maak zichtbaar wanneer het misgaat', meta: 'In opbouw' },
 ];
 ---
 
@@ -81,38 +81,38 @@ const notes = [
       <div class="hero__grain" aria-hidden="true"></div>
 
       <header class="site-header">
-        <a class="wordmark" href="#top" aria-label="Jonathan Núñez Dhondt home">JND<span>·</span></a>
-        <nav class="primary-nav" aria-label="Primary navigation">
-          <a href="#work">Work</a>
-          <a href="#notes">Notes</a>
-          <a href="#about">About</a>
+        <a class="wordmark" href="#top" aria-label="Jonathan Núñez Dhondt, naar boven">JND<span>·</span></a>
+        <nav class="primary-nav" aria-label="Hoofdnavigatie">
+          <a href="#work">Werk</a>
+          <a href="#notes">Notities</a>
+          <a href="#about">Over mij</a>
           <a href="#contact">Contact</a>
         </nav>
-        <p class="header-status"><span class="status-dot" aria-hidden="true"></span> Ghent, BE · building</p>
+        <p class="header-status"><span class="status-dot" aria-hidden="true"></span> Gent, BE · aan het bouwen</p>
       </header>
 
       <div class="hero__content">
-        <p class="eyebrow hero__eyebrow">JND / FIELD ATLAS / VOL. 01</p>
+        <p class="eyebrow hero__eyebrow">JND / DE ATLAS / DEEL 01</p>
         <h1>
-          I map complex systems
-          <em>and build useful things.</em>
+          Ik breng complexe systemen in kaart
+          <em>en bouw dingen die werken.</em>
         </h1>
         <p class="hero__summary">
-          Security-minded builder working across agent systems, application security and practical web products.
+          Technische student en bouwer uit Gent. Ik werk aan agentsystemen, applicatiebeveiliging en praktische webproducten.
         </p>
         <a class="text-link text-link--hero" href="#work">
-          <span>Explore the atlas</span>
+          <span>Bekijk het werk</span>
           <span class="text-link__arrow" aria-hidden="true">↓</span>
         </a>
       </div>
 
-      <div class="hero__identity" aria-label="Identity">
+      <div class="hero__identity" aria-label="Identiteit">
         <span>Jonathan Núñez Dhondt</span>
-        <span>Software · Security · Systems</span>
+        <span>Software · Beveiliging · Systemen</span>
       </div>
 
       <div class="hero__scroll" aria-hidden="true">
-        <span>Scroll to locate the work</span>
+        <span>Scroll naar het werk</span>
         <span class="hero__scroll-line"></span>
       </div>
     </section>
@@ -120,11 +120,11 @@ const notes = [
     <main id="main">
       <section class="work-section" id="work" data-reveal-section>
         <div class="section-grid section-grid--intro">
-          <p class="section-label">01 / Current coordinates</p>
+          <p class="section-label">01 / Waar ik nu aan werk</p>
           <div>
-            <p class="section-lede">The atmosphere is only the entrance. The work is the proof.</p>
+            <p class="section-lede">De video is de ingang. Hier zie je wat ik bouw, leer en test.</p>
             <p class="section-copy">
-              A small index of what is being built, studied and tested. Some things will change. The way of looking at them is the constant.
+              Een kort overzicht van waar ik nu mee bezig ben. De projecten veranderen. Ik probeer eerst te begrijpen wat er misgaat en pas daarna iets te bouwen.
             </p>
           </div>
         </div>
@@ -157,11 +157,11 @@ const notes = [
 
       <section class="notes-section" id="notes" data-reveal-section>
         <div class="notes-section__top section-grid">
-          <p class="section-label section-label--dark">02 / Field notes</p>
+          <p class="section-label section-label--dark">02 / Veldnotities</p>
           <div>
-            <p class="section-lede section-lede--dark">Questions worth returning to.</p>
+            <p class="section-lede section-lede--dark">Vragen waar ik op terugkom.</p>
             <p class="section-copy section-copy--dark">
-              A working index of threads from the overlap between software, security, learning and the work of making something clearer.
+              Hier komen notities over software, beveiliging, leren en wat er gebeurt wanneer iets niet werkt.
             </p>
           </div>
         </div>
@@ -181,19 +181,19 @@ const notes = [
 
       <section class="about-section" id="about" data-reveal-section>
         <div class="section-grid section-grid--about">
-          <p class="section-label">03 / About</p>
+          <p class="section-label">03 / Over mij</p>
           <div class="about-copy">
-            <p class="about-lede">I like the moment when something complicated becomes usable.</p>
+            <p class="about-lede">Ik hou van het moment waarop iets ingewikkelds bruikbaar wordt.</p>
             <p>
-              I am Jonathan: a technical student and builder based in Ghent. I move between software, security, systems and design — usually starting with a vague problem and staying until its shape is clear enough to act on.
+              Ik ben Jonathan, een technische student en bouwer uit Gent. Ik beweeg tussen software, beveiliging, systemen en ontwerp. Meestal begin ik met een vaag probleem en blijf ik eraan werken tot ik genoeg begrijp om iets te bouwen.
             </p>
             <p>
-              I prefer evidence to theatre, working prototypes to perfect plans, and tools that make the next decision easier. This site is a living index, not a finished claim.
+              Ik verkies bewijs boven theater, een werkend prototype boven een perfect plan en gereedschap dat de volgende beslissing makkelijker maakt. Deze site is een levende index van waar ik mee bezig ben, geen afgewerkt verhaal.
             </p>
-            <div class="about-facts" aria-label="Current facts">
-              <div><span>Based in</span><strong>Ghent, Belgium</strong></div>
-              <div><span>Focus</span><strong>Software · AppSec · Agents</strong></div>
-              <div><span>Current mode</span><strong>Study · build · test</strong></div>
+            <div class="about-facts" aria-label="Huidige feiten">
+              <div><span>In</span><strong>Gent, België</strong></div>
+              <div><span>Werkgebied</span><strong>Software · beveiliging · agents</strong></div>
+              <div><span>Nu</span><strong>Studeren · bouwen · testen</strong></div>
             </div>
           </div>
         </div>
@@ -201,20 +201,20 @@ const notes = [
 
       <section class="contact-section" id="contact" data-reveal-section>
         <div class="contact-section__inner">
-          <p class="section-label section-label--dark">04 / Contact</p>
-          <h2>Have something worth making clearer?</h2>
-          <p>For a project, a technical question or a useful conversation.</p>
+          <p class="section-label section-label--dark">04 / Neem contact op</p>
+          <h2>Iets bouwen of uitzoeken?</h2>
+          <p>Voor een project, een technische vraag of om iets samen uit te zoeken. Voorlopig is GitHub de beste plek om me te bereiken.</p>
           <a class="contact-link" href="https://github.com/jonathannd02" target="_blank" rel="noreferrer">
-            github.com/jonathannd02 <span aria-hidden="true">↗</span>
+            Ga naar GitHub <span aria-hidden="true">↗</span>
           </a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>JND / FIELD ATLAS / VOL. 01</span>
+      <span>JND / DE ATLAS / DEEL 01</span>
       <span>© {new Date().getFullYear()} Jonathan Núñez Dhondt</span>
-      <a href="#top">Back to top ↑</a>
+      <a href="#top">Terug naar boven ↑</a>
     </footer>
   </div>
   <script src="../scripts/site.ts"></script>

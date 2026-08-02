@@ -3,9 +3,10 @@
   <path d="M0 495C155 440 158 350 300 376s168 92 305-80 194-121 308-42 168 23 287-119" fill="none" stroke="#c79a52" stroke-width="3" opacity=".8"/>
   <path d="M0 496C155 441 158 351 300 377s168 92 305-80 194-121 308-42 168 23 287-119" fill="none" stroke="#e8e0d0" stroke-width="1" stroke-dasharray="3 18" opacity=".45"/>
   <g fill="#e8e0d0" font-family="Georgia, serif">
-    <text x="78" y="110" font-size="18" letter-spacing="5" fill="#c79a52">JND / FIELD ATLAS / VOL. 01</text>
-    <text x="78" y="270" font-size="78">I map complex systems</text>
-    <text x="78" y="352" font-size="78" font-style="italic">and build useful things.</text>
+    <text x="78" y="110" font-size="18" letter-spacing="5" fill="#c79a52">JND / DE ATLAS / DEEL 01</text>
+    <text x="78" y="235" font-size="64">Ik breng complexe systemen</text>
+    <text x="78" y="315" font-size="64" font-style="italic">in kaart en bouw dingen</text>
+    <text x="78" y="395" font-size="64" font-style="italic">die werken.</text>
   </g>
-  <text x="80" y="530" fill="#76583b" font-family="Arial, sans-serif" font-size="16" letter-spacing="3">SOFTWARE · SECURITY · SYSTEMS</text>
+  <text x="80" y="530" fill="#76583b" font-family="Arial, sans-serif" font-size="16" letter-spacing="3">SOFTWARE · BEVEILIGING · SYSTEMEN</text>
 </svg>

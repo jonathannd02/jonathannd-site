@@ -1,15 +1,15 @@
-# Jonathan ND — The Atlas
+# Jonathan ND · De Atlas
 
-A personal field atlas for software, security, systems and the questions that keep returning.
+Een persoonlijke atlas voor software, beveiliging, systemen en de vragen waar ik op blijf terugkomen.
 
-## Local development
+## Lokaal ontwikkelen
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build and serve the production output:
+De productieversie bouwen en lokaal serveren:
 
 ```bash
 npm run check
@@ -17,15 +17,15 @@ npm run build
 npm run preview
 ```
 
-## Assets
+## Bestanden
 
-The hero uses `public/media/atlas.mp4` and `public/media/atlas-poster.jpg`.
-The current video is a 1280×720, ~4-second H.264 clip. The poster is the final frame and is the required fallback for reduced motion, mobile and failed playback.
+De hero gebruikt `public/media/atlas.mp4` en `public/media/atlas-poster.jpg`.
+De video is 1280×720, duurt ongeveer vier seconden en gebruikt H.264. De poster is het laatste beeld van de video en wordt gebruikt bij minder beweging, op mobiele schermen en wanneer het afspelen mislukt.
 
-Before publishing:
+Voor de site online gaat:
 
-- replace the temporary GitHub contact link in `src/pages/index.astro` with the preferred contact path;
-- add only verified project links and statuses;
-- add a production domain and canonical URL in the layout;
-- export a real social preview if the SVG preview is not sufficient;
-- test the video crop on the actual target devices.
+- vervang de tijdelijke GitHub-link in `src/pages/index.astro` door het contactkanaal dat je wilt gebruiken;
+- voeg alleen gecontroleerde projectlinks en statussen toe;
+- voeg het productiedomein en de canonical URL toe aan de layout;
+- maak een echte social preview als de SVG-preview niet volstaat;
+- test de uitsnede van de video op de apparaten waarop de site moet werken.
