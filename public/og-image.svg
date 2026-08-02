@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d0b09"/>
+  <path d="M0 495C155 440 158 350 300 376s168 92 305-80 194-121 308-42 168 23 287-119" fill="none" stroke="#c79a52" stroke-width="3" opacity=".8"/>
+  <path d="M0 496C155 441 158 351 300 377s168 92 305-80 194-121 308-42 168 23 287-119" fill="none" stroke="#e8e0d0" stroke-width="1" stroke-dasharray="3 18" opacity=".45"/>
+  <g fill="#e8e0d0" font-family="Georgia, serif">
+    <text x="78" y="110" font-size="18" letter-spacing="5" fill="#c79a52">JND / FIELD ATLAS / VOL. 01</text>
+    <text x="78" y="270" font-size="78">I map complex systems</text>
+    <text x="78" y="352" font-size="78" font-style="italic">and build useful things.</text>
+  </g>
+  <text x="80" y="530" fill="#76583b" font-family="Arial, sans-serif" font-size="16" letter-spacing="3">SOFTWARE · SECURITY · SYSTEMS</text>
+</svg>

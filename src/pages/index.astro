@@ -1,0 +1,221 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const selectedWork = [
+  {
+    index: '01',
+    title: 'Agent systems',
+    discipline: 'Infrastructure / open source',
+    status: 'Active development',
+    description:
+      'Tools and interfaces for agents that can use context, act through software and remain understandable when something fails.',
+    role: 'Engineering · integration · systems thinking',
+    href: 'https://github.com/jonathannd02',
+    label: 'Open profile',
+    external: true,
+  },
+  {
+    index: '02',
+    title: 'Application security',
+    discipline: 'Research / field notes',
+    status: 'In progress',
+    description:
+      'Learning by testing the boundary: labs, write-ups and the discipline of checking what a system actually does.',
+    role: 'Study · testing · documentation',
+    href: '#notes',
+    label: 'Read the notes',
+    external: false,
+  },
+  {
+    index: '03',
+    title: 'Practical systems',
+    discipline: 'Web / automation / operations',
+    status: 'Ongoing',
+    description:
+      'Small, useful systems are allowed to change. The method stays: understand the shape, make it useful, test it against reality.',
+    role: 'Design · implementation · refinement',
+    href: '#about',
+    label: 'How I work',
+    external: false,
+  },
+];
+
+const notes = [
+  { number: '01', type: 'Security', title: 'What the surface does not tell you', meta: 'Field note / 2026' },
+  { number: '02', type: 'Systems', title: 'Useful before impressive', meta: 'Working principle' },
+  { number: '03', type: 'Learning', title: 'Make the failure legible', meta: 'In progress' },
+];
+---
+
+<SiteLayout>
+  <div class="site-shell">
+    <section class="hero" id="top" data-hero>
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        playsinline
+        preload="metadata"
+        poster="/media/atlas-poster.jpg"
+        aria-hidden="true"
+      >
+        <source src="/media/atlas.mp4" type="video/mp4" />
+      </video>
+
+      <div class="hero__grade" aria-hidden="true"></div>
+
+      <svg
+        class="hero__route"
+        viewBox="0 0 1000 600"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path class="route route--ghost" d="M-35 452C105 422 140 340 267 360s157 83 286-89 193-121 307-40 166 20 220-92" />
+        <path class="route route--main" pathLength="1" d="M-35 452C105 422 140 340 267 360s157 83 286-89 193-121 307-40 166 20 220-92" />
+        <path class="route route--fine" pathLength="1" d="M-35 452C105 422 140 340 267 360s157 83 286-89 193-121 307-40 166 20 220-92" />
+        <circle class="atlas-node" data-node="01" cx="267" cy="360" r="7" />
+        <circle class="atlas-node" data-node="02" cx="553" cy="271" r="7" />
+        <circle class="atlas-node" data-node="03" cx="860" cy="231" r="7" />
+      </svg>
+
+      <div class="hero__grain" aria-hidden="true"></div>
+
+      <header class="site-header">
+        <a class="wordmark" href="#top" aria-label="Jonathan Núñez Dhondt home">JND<span>·</span></a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="#work">Work</a>
+          <a href="#notes">Notes</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p class="header-status"><span class="status-dot" aria-hidden="true"></span> Ghent, BE · building</p>
+      </header>
+
+      <div class="hero__content">
+        <p class="eyebrow hero__eyebrow">JND / FIELD ATLAS / VOL. 01</p>
+        <h1>
+          I map complex systems
+          <em>and build useful things.</em>
+        </h1>
+        <p class="hero__summary">
+          Security-minded builder working across agent systems, application security and practical web products.
+        </p>
+        <a class="text-link text-link--hero" href="#work">
+          <span>Explore the atlas</span>
+          <span class="text-link__arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div class="hero__identity" aria-label="Identity">
+        <span>Jonathan Núñez Dhondt</span>
+        <span>Software · Security · Systems</span>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Scroll to locate the work</span>
+        <span class="hero__scroll-line"></span>
+      </div>
+    </section>
+
+    <main id="main">
+      <section class="work-section" id="work" data-reveal-section>
+        <div class="section-grid section-grid--intro">
+          <p class="section-label">01 / Current coordinates</p>
+          <div>
+            <p class="section-lede">The atmosphere is only the entrance. The work is the proof.</p>
+            <p class="section-copy">
+              A small index of what is being built, studied and tested. Some things will change. The way of looking at them is the constant.
+            </p>
+          </div>
+        </div>
+
+        <div class="work-list" role="list">
+          {selectedWork.map((item) => (
+            <article class="work-row" role="listitem" data-work-item={item.index} tabindex="0">
+              <span class="work-row__index">{item.index}</span>
+              <div class="work-row__title">
+                <p class="work-row__discipline">{item.discipline}</p>
+                <h2>{item.title}</h2>
+                <p class="work-row__status"><span></span>{item.status}</p>
+              </div>
+              <div class="work-row__detail">
+                <p>{item.description}</p>
+                <p class="work-row__role">{item.role}</p>
+                <a
+                  class="row-link"
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noreferrer' : undefined}
+                >
+                  {item.label} <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="notes-section" id="notes" data-reveal-section>
+        <div class="notes-section__top section-grid">
+          <p class="section-label section-label--dark">02 / Field notes</p>
+          <div>
+            <p class="section-lede section-lede--dark">Questions worth returning to.</p>
+            <p class="section-copy section-copy--dark">
+              A working index of threads from the overlap between software, security, learning and the work of making something clearer.
+            </p>
+          </div>
+        </div>
+
+        <div class="notes-list" role="list">
+          {notes.map((note) => (
+            <div class="note-row" role="listitem">
+              <span class="note-row__number">{note.number}</span>
+              <span class="note-row__type">{note.type}</span>
+              <span class="note-row__title">{note.title}</span>
+              <span class="note-row__meta">{note.meta}</span>
+              <span class="note-row__arrow" aria-hidden="true">—</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="about-section" id="about" data-reveal-section>
+        <div class="section-grid section-grid--about">
+          <p class="section-label">03 / About</p>
+          <div class="about-copy">
+            <p class="about-lede">I like the moment when something complicated becomes usable.</p>
+            <p>
+              I am Jonathan: a technical student and builder based in Ghent. I move between software, security, systems and design — usually starting with a vague problem and staying until its shape is clear enough to act on.
+            </p>
+            <p>
+              I prefer evidence to theatre, working prototypes to perfect plans, and tools that make the next decision easier. This site is a living index, not a finished claim.
+            </p>
+            <div class="about-facts" aria-label="Current facts">
+              <div><span>Based in</span><strong>Ghent, Belgium</strong></div>
+              <div><span>Focus</span><strong>Software · AppSec · Agents</strong></div>
+              <div><span>Current mode</span><strong>Study · build · test</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" data-reveal-section>
+        <div class="contact-section__inner">
+          <p class="section-label section-label--dark">04 / Contact</p>
+          <h2>Have something worth making clearer?</h2>
+          <p>For a project, a technical question or a useful conversation.</p>
+          <a class="contact-link" href="https://github.com/jonathannd02" target="_blank" rel="noreferrer">
+            github.com/jonathannd02 <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>JND / FIELD ATLAS / VOL. 01</span>
+      <span>© {new Date().getFullYear()} Jonathan Núñez Dhondt</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </div>
+  <script src="../scripts/site.ts"></script>
+</SiteLayout>
