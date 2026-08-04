@@ -10,8 +10,7 @@ const notes = defineCollection({
     number: z.string(),
     category: z.string(),
     published: z.coerce.date(),
-    cover: z.string(),
-    coverAlt: z.string(),
+    coverAlt: z.string().optional(),
   }),
 });
 

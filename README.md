@@ -25,6 +25,36 @@ De blogindex in `src/pages/index.astro` toont gepubliceerde notities uit `src/co
 
 Gepubliceerde artikelen worden statisch opgebouwd onder `/notities/[slug]/` met `src/layouts/NoteLayout.astro`. De inhoudsschema's staan in `src/content.config.ts`. Grenze en IBM Plex Mono worden self-hosted vanuit `public/fonts/`.
 
+## Een nieuwe notitie maken
+
+Maak alleen een Markdown-bestand in `src/content/notities/`. De bestandsnaam wordt de URL-slug. Kopieer dit vaste frontmatter-formaat:
+
+```md
+---
+title: Een duidelijke titel
+description: Eén zin die de notitie samenvat.
+number: '02'
+category: Beveiliging
+published: 2026-08-05
+---
+
+De eerste alinea wordt de inleiding.
+
+## Een tussenkop
+
+De rest van de notitie.
+```
+
+Wil je een eigen coverafbeelding, zet dan één afbeelding naast het Markdown-bestand met exact dezelfde bestandsnaam:
+
+```text
+src/content/notities/
+├── mijn-notitie.md
+└── mijn-notitie.webp
+```
+
+Voeg in dat geval ook `coverAlt: Een korte, feitelijke beschrijving.` toe aan de frontmatter. Zonder afbeelding gebruikt de site automatisch de bestaande poster als fallback. De build faalt wanneer er meerdere afbeeldingen met dezelfde naam zijn of wanneer `coverAlt` ontbreekt.
+
 Voor de site online gaat:
 
 - vervang de GitHub-link in `src/pages/index.astro` door het contactkanaal dat je wilt gebruiken;

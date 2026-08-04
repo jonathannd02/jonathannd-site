@@ -78,6 +78,7 @@
 html {
   min-width: 320px;
   background: var(--ink);
+  font-size: 94%;
   scroll-behavior: smooth;
 }
 
@@ -1080,7 +1081,7 @@ a {
   max-width: 9ch;
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(4rem, 7.4vw, 8.5rem);
+  font-size: clamp(3.75rem, 6.9vw, 8rem);
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 0.9;
@@ -1091,7 +1092,7 @@ a {
   max-width: 35rem;
   margin: clamp(2rem, 4vw, 4rem) 0 0;
   color: var(--bone-quiet);
-  font-size: clamp(1.08rem, 1.5vw, 1.3rem);
+  font-size: clamp(1rem, 1.38vw, 1.22rem);
   line-height: 1.6;
 }
 
@@ -1152,7 +1153,7 @@ a {
   bottom: -0.2em;
   color: rgba(232, 224, 208, 0.12);
   font-family: var(--display);
-  font-size: clamp(15rem, 35vw, 38rem);
+  font-size: clamp(14rem, 32vw, 35rem);
   line-height: 0.78;
 }
 
@@ -1181,7 +1182,7 @@ a {
 .note-prose > ul {
   margin-top: 0;
   margin-bottom: 1.6rem;
-  font-size: clamp(1.15rem, 1.45vw, 1.32rem);
+  font-size: clamp(1.08rem, 1.33vw, 1.24rem);
   line-height: 1.72;
 }
 
@@ -1190,7 +1191,7 @@ a {
   margin-bottom: clamp(6rem, 10vw, 10rem);
   padding-left: clamp(1.25rem, 3vw, 2.5rem);
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 3.6vw, 3.5rem);
+  font-size: clamp(1.7rem, 3.3vw, 3.25rem);
   letter-spacing: -0.01em;
   line-height: 1.12;
 }
@@ -1200,7 +1201,7 @@ a {
   max-width: 14ch;
   margin: clamp(6rem, 10vw, 10rem) 0 clamp(2rem, 4vw, 3.5rem);
   font-family: var(--serif);
-  font-size: clamp(2.8rem, 6vw, 6rem);
+  font-size: clamp(2.65rem, 5.5vw, 5.6rem);
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 0.95;
@@ -1292,7 +1293,7 @@ a {
   margin: 0 auto;
   color: var(--bone);
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 6vw, 6.5rem);
+  font-size: clamp(2.35rem, 5.5vw, 6rem);
   letter-spacing: -0.015em;
   line-height: 0.94;
   text-align: center;
@@ -1351,7 +1352,7 @@ a {
 .note-pagination strong {
   max-width: 24rem;
   font-family: var(--serif);
-  font-size: clamp(1.25rem, 2vw, 2rem);
+  font-size: clamp(1.18rem, 1.85vw, 1.85rem);
   font-weight: 400;
   line-height: 1.05;
 }
@@ -1434,7 +1435,7 @@ a {
   }
 
   .note-cover h1 {
-    font-size: clamp(3.7rem, 18vw, 5.6rem);
+    font-size: clamp(3.5rem, 16.5vw, 5.3rem);
   }
 
   .note-cover__description {
