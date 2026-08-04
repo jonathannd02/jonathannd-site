@@ -16,6 +16,8 @@ const bayerMatrix = [
   3, 11, 1, 9,
   15, 7, 13, 5,
 ] as const;
+const heroDitherBlack = [5, 2, 2] as const;
+const heroDitherRed = [102, 13, 18] as const;
 
 const ditherState = {
   x: 0.5,
@@ -104,22 +106,20 @@ const renderDither = (): void => {
           const threshold = (bayerMatrix[((y + phaseY) % 4) * 4 + ((x + phaseX) % 4)] + 0.5) / 16;
 
           if (value > threshold) {
-            const highlight = clamp((value - threshold) * 2.8, 0, 1);
-            output[offset] = 226;
-            output[offset + 1] = 187;
-            output[offset + 2] = 114;
-            output[offset + 3] = Math.round((0.08 + highlight * 0.22 + pointerLift * 0.3) * 255);
+            output[offset] = heroDitherRed[0];
+            output[offset + 1] = heroDitherRed[1];
+            output[offset + 2] = heroDitherRed[2];
+            output[offset + 3] = 255;
           } else {
-            output[offset] = 0;
-            output[offset + 1] = 0;
-            output[offset + 2] = 0;
-            output[offset + 3] = 0;
+            output[offset] = heroDitherBlack[0];
+            output[offset + 1] = heroDitherBlack[1];
+            output[offset + 2] = heroDitherBlack[2];
+            output[offset + 3] = 255;
           }
         }
       }
 
       ditherContext.putImageData(ditherImage, 0, 0);
-      ditherCanvas.style.setProperty('--dither-opacity', (0.22 + ditherState.pressure * 0.2).toFixed(3));
       ditherCanvas.style.setProperty('--dither-shift-x', `${((ditherState.x - 0.5) * 10).toFixed(2)}px`);
       ditherCanvas.style.setProperty('--dither-shift-y', `${((ditherState.y - 0.5) * 8).toFixed(2)}px`);
       hero.classList.add('has-dither');

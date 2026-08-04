@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { getCollection } from 'astro:content';
 
 const selectedWork = [
   {
@@ -40,11 +41,9 @@ const selectedWork = [
   },
 ];
 
-const notes = [
-  { number: '01', type: 'Beveiliging', title: 'Wat de buitenkant je niet vertelt', meta: 'Veldnotitie / 2026' },
-  { number: '02', type: 'Systemen', title: 'Eerst bruikbaar, dan indrukwekkend', meta: 'Werkprincipe' },
-  { number: '03', type: 'Leren', title: 'Maak zichtbaar wanneer het misgaat', meta: 'In opbouw' },
-];
+const notes = (await getCollection('notes')).sort((a, b) =>
+  a.data.number.localeCompare(b.data.number, 'nl', { numeric: true }),
+);
 ---
 
 <SiteLayout>
@@ -148,22 +147,24 @@ const notes = [
           <div>
             <p class="section-lede section-lede--dark">Vragen waar ik op terugkom.</p>
             <p class="section-copy section-copy--dark">
-              Hier komen notities over software, beveiliging, leren en wat er gebeurt wanneer iets niet werkt.
+              Veldnotities over software, beveiliging, leren en wat er gebeurt wanneer iets niet werkt.
             </p>
           </div>
         </div>
 
-        <div class="notes-list" role="list">
+        <ol class="notes-list">
           {notes.map((note) => (
-            <div class="note-row" role="listitem">
-              <span class="note-row__number">{note.number}</span>
-              <span class="note-row__type">{note.type}</span>
-              <span class="note-row__title">{note.title}</span>
-              <span class="note-row__meta">{note.meta}</span>
-              <span class="note-row__arrow" aria-hidden="true">—</span>
-            </div>
+            <li>
+              <a class="note-row" href={`/notities/${note.id}/`}>
+                <span class="note-row__number">{note.data.number}</span>
+                <span class="note-row__type">{note.data.category}</span>
+                <span class="note-row__title">{note.data.title}</span>
+                <span class="note-row__meta">Veldnotitie / {note.data.published.getUTCFullYear()}</span>
+                <span class="note-row__arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <section class="about-section" id="about" data-reveal-section>

@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SiteLayout from './SiteLayout.astro';
+
+interface Props {
+  note: CollectionEntry<'notes'>;
+  previous?: CollectionEntry<'notes'>;
+  next?: CollectionEntry<'notes'>;
+}
+
+const { note, previous, next } = Astro.props;
+const published = new Intl.DateTimeFormat('nl-BE', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(note.data.published);
+const coverStyle = `--note-cover-image: url('${note.data.cover}')`;
+---
+
+<SiteLayout
+  title={`${note.data.title} · De Atlas`}
+  description={note.data.description}
+  image={note.data.cover}
+  type="article"
+  publishedTime={note.data.published}
+>
+  <div class="note-page">
+    <header class="note-header">
+      <a class="note-wordmark" href="/" aria-label="Jonathan Núñez Dhondt, naar de startpagina">JND<span>·</span></a>
+      <a class="note-header__back" href="/#notes"><span aria-hidden="true">←</span> Veldnotities</a>
+      <p>{note.data.category} / De Atlas</p>
+    </header>
+
+    <main id="main">
+      <section class="note-cover" aria-labelledby="note-title">
+        <div class="note-cover__copy">
+          <p class="note-kicker">Veldnotitie {note.data.number} / {note.data.category}</p>
+          <h1 id="note-title">{note.data.title}</h1>
+          <p class="note-cover__description">{note.data.description}</p>
+          <div class="note-cover__meta">
+            <span>JND / Gent</span>
+            <time datetime={note.data.published.toISOString()}>{published}</time>
+          </div>
+        </div>
+
+        <div
+          class="note-cover__visual"
+          style={coverStyle}
+          role="img"
+          aria-label={note.data.coverAlt}
+        >
+          <div class="note-cover__visual-image" aria-hidden="true"></div>
+          <span aria-hidden="true">{note.data.number}</span>
+        </div>
+      </section>
+
+      <article class="note-article">
+        <div class="note-prose">
+          <slot />
+        </div>
+      </article>
+
+      <nav class="note-pagination" aria-label="Navigatie tussen veldnotities">
+        {previous ? (
+          <a class="note-pagination__previous" href={`/notities/${previous.id}/`}>
+            <span>← Vorig dossier</span>
+            <strong>{previous.data.title}</strong>
+          </a>
+        ) : <span class="note-pagination__empty" aria-hidden="true"></span>}
+
+        <a class="note-pagination__index" href="/#notes">Alle veldnotities</a>
+
+        {next ? (
+          <a class="note-pagination__next" href={`/notities/${next.id}/`}>
+            <span>Volgend dossier →</span>
+            <strong>{next.data.title}</strong>
+          </a>
+        ) : <span class="note-pagination__empty" aria-hidden="true"></span>}
+      </nav>
+    </main>
+
+    <footer class="note-footer">
+      <span>JND / De Atlas / Veldnotitie {note.data.number}</span>
+      <a href="https://github.com/jonathannd02" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </footer>
+  </div>
+</SiteLayout>

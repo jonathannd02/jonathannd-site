@@ -4,11 +4,17 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
 }
 
 const {
   title = 'Jonathan Núñez Dhondt · De Atlas',
   description = 'Een persoonlijke atlas voor software, beveiliging, systemen en de vragen waar ik op blijf terugkomen.',
+  image = '/og-image.svg',
+  type = 'website',
+  publishedTime,
 } = Astro.props;
 ---
 <!doctype html>
@@ -18,12 +24,15 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0d0b09" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image" content={image} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/grenze-gotisch-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/grenze-var.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <a class="skip-link" href="#main">Ga naar de inhoud</a>
