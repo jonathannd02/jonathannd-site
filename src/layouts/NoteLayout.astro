@@ -28,7 +28,7 @@ const coverStyle = `--note-cover-image: url('${note.data.cover}')`;
   <div class="note-page">
     <header class="note-header">
       <a class="note-wordmark" href="/" aria-label="Jonathan Núñez Dhondt, naar de startpagina">JND<span>·</span></a>
-      <a class="note-header__back" href="/#notes"><span aria-hidden="true">←</span> Veldnotities</a>
+      <a class="note-header__back" href="/#posts"><span aria-hidden="true">←</span> Veldnotities</a>
       <p>{note.data.category} / De Atlas</p>
     </header>
 
@@ -69,7 +69,7 @@ const coverStyle = `--note-cover-image: url('${note.data.cover}')`;
           </a>
         ) : <span class="note-pagination__empty" aria-hidden="true"></span>}
 
-        <a class="note-pagination__index" href="/#notes">Alle veldnotities</a>
+        <a class="note-pagination__index" href="/#posts">Alle veldnotities</a>
 
         {next ? (
           <a class="note-pagination__next" href={`/notities/${next.id}/`}>

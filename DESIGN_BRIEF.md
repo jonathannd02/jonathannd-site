@@ -1,54 +1,96 @@
-# De Atlas · ontwerp- en implementatiebrief
+# JND / Notities · ontwerp- en implementatiebrief
 
-### Persoon en toon
+## Richting
 
-Jonathan is een pragmatische bouwer die ook op de vorm let. Hij houdt van systemen die verwarring verminderen, diepgang zonder theater en mooi werk dat ergens voor dient. Hij is technisch ingesteld, denkt graag na voor hij begint en heeft weinig geduld voor complexiteit die niets oplost.
+Maak van Jonathan Núñez Dhondt zijn persoonlijke site een eenvoudige blogachtige homepage. De video opent de site en houdt zijn laatste beeld vast; daarna volgt één sobere index met technische gedachten, veldnotities en onaf werk wanneer de bezoeker verdergaat.
 
-De site moet:
+De visuele richting leunt op twee inspiratiepunten:
 
-- rustig zijn zonder leeg aan te voelen;
-- persoonlijk zijn zonder een toneelstuk te worden;
-- filmisch zijn zonder onbruikbaar te worden;
-- zichtbaar in opbouw zijn, omdat het werk nog verandert.
+- **Troof:** een eenvoudige index met onderwerpclusters en weinig presentatie eromheen;
+- **Sean Goedecke:** een smalle redactionele feed met sterke titels, compacte metadata en een directe route naar recente posts.
 
-### Visuele hiërarchie
+De site moet rustig, precies en persoonlijk zijn. De filmische opening mag aandacht vragen, maar de blogindex moet daarna bijna verdwijnen.
 
-- De stadsvideo geeft de wereld en de sfeer, in de hero teruggebracht tot zwart en donker bloedrood.
-- Bayer-dither overlays (Canvas 2D) geven de hero een volledige tweekleurige behandeling en het about-portret een beperkte, pointer-gevoelige textuur.
+## Inhoudelijke hiërarchie
 
-### Visuele richting
+De eerste viewport toont alleen de video, de poster en een lokale pointergloed die de originele videokleur vrijmaakt. De identiteit en de inhoud verschijnen pas daarna.
 
-- zwart en donker bloedrood in de hero met warme, botkleurige tekst;
-- oud goud als accentkleur voor typografie en interactie;
-- ossenbloedzwart voor de notities en de contactsectie, geen koud blauw;
-- Grenze (variabel, zelf gehost) als redactionele semi-serif voor koppen en lopende tekst; gewicht 600 voor koppen, 400 voor tekst;
-- Grenze Gotisch alleen als embleem: het woordmerk en het grote dossiernummer, nooit voor lopende koppen, omdat de gotische hoofdletter I als D leest;
-- IBM Plex Mono voor metadata, labels, code en paginering;
-- tekstkleuren komen uit vaste tokens (bone, bone-muted, bone-quiet, bone-dim, ink-muted, ink-dim, gold, bloedreeks) en halen minimaal WCAG AA op hun eigen ondergrond;
-- optionele Canvas 2D dither als filmische beeldbehandeling, niet als speeltje;
-- geen neon, regenboogvloeistof, glassmorphism, nepstatistieken, generieke kaarten, custom cursor, typewriter-effect, scroll-hijacking of dashboardrommel.
+De homepage bestaat uit:
 
-### Veldnotities
+1. **Videoopening:** de video speelt één keer volledig af, houdt het laatste beeld vast en kan met elke klik worden overgeslagen;
+2. **Schrijfindex:** een smalle lijst met echte publicaties en duidelijk gemarkeerde werknotities;
+3. **Artikelen:** gepubliceerde veldnotities leven in de Astro-contentcollectie en hebben een echte route onder `/notities/[slug]/`.
 
-- Gepubliceerde veldnotities zijn statisch gegenereerde artikelen onder `/notities/[slug]/`, gevoed door de Astro-contentcollectie in `src/content/notities/`.
-- De artikelcover gebruikt zwart, donker bloedrood, een rastertoon en een groot dossiernummer; de hoofdtekst blijft op botkleurig papier voor langdurige leesbaarheid.
-- Manga-invloed komt uit ritme: genummerde scènes, brede bewijsfragmenten, één donkere page-turn en een naschrift. De semantische leesvolgorde blijft lineair en bruikbaar zonder JavaScript.
-- De notitielijst op de startpagina toont alleen werkelijk gepubliceerde content en linkt naar dezelfde collectie; titels en metadata worden niet dubbel bijgehouden.
+Er zijn bewust geen aparte onderwerp-, portret-, contact- of over-secties op de homepage. Voeg pas nieuwe navigatie toe wanneer er echte inhoud en een echte route voor bestaat.
 
-### Technische vereisten
+## Contentstatus
 
-Gebruik Astro voor de statische basis. Houd alle pagina's semantisch en licht. Begin met native CSS en een kleine hoeveelheid TypeScript in de browser. Canvas 2D dither is optionele aankleding en mag nooit de H1, navigatie, CTA of projectinformatie bevatten. Vermijd WebGL of zwaardere effectlagen tenzij ze dezelfde progressive-enhancement-regel respecteren.
+- Gepubliceerde veldnotities komen uit `src/content/notities/` en worden automatisch op de homepage getoond.
+- De route en artikelpagina gebruiken dezelfde contentdata; titels en metadata worden niet dubbel bijgehouden.
+- De twee huidige ideeën zonder volledige tekst blijven gewone tekst en krijgen geen nep-link.
+- Gebruik `gepubliceerd`, `in opbouw` en `werkprincipe` alleen wanneer die status klopt.
 
-De site moet bevatten:
+## Nieuwe notities
 
-- een poster die meteen als fallback beschikbaar is;
-- ondersteuning voor `prefers-reduced-motion` (video pauzeren/verbergen, dither uitschakelen, reveals direct tonen);
-- zichtbare focus states voor toetsenbordgebruik;
-- echte links en semantische landmarks;
-- een responsieve uitsnede van de video;
-- hero- en portret-dither overlays die zonder JavaScript gewoon verdwijnen;
-- geen overname van het scrollgedrag;
-- geen verzonnen cijfers over prestaties;
-- een gecontroleerde productiebuild en browsercontrole.
+Een nieuwe publicatie bestaat uit één Markdown-bestand in `src/content/notities/`. De bestandsnaam wordt de slug. Een optionele coverafbeelding staat naast dat bestand met exact dezelfde bestandsnaam en één van de ondersteunde extensies (`avif`, `jpeg`, `jpg`, `png`, `webp`). `coverAlt` is verplicht wanneer zo'n afbeelding bestaat. De layout ontdekt de afbeelding tijdens de build; een nieuwe notitie vraagt geen wijziging aan Astro-, CSS- of TypeScript-code.
 
-Stop niet bij een visuele mockup. Start de site, bekijk desktop en mobiel, controleer de browserconsole, test minder beweging en noteer alleen wat ook echt gecontroleerd is.
+## Visuele richting
+
+- donker houtskool voor de video-opening;
+- warm papier voor de schrijfindex;
+- Grenze als redactionele serif voor titels en artikeltekst;
+- IBM Plex Mono voor metadata en labels;
+- oude goud- en bloedrode accenten uit de remote Atlas-richting;
+- dunne lijnen, brede marges en één inhoudskolom;
+- geen neon, glassmorphism, nepstatistieken, generieke kaarten, custom cursor, typewriter-effect of scroll-hijacking.
+
+## Media en beweging
+
+De video in `public/media/atlas.mp4` is ongeveer vier seconden lang. Toon hem bij binnenkomst schermvullend met `autoplay muted playsinline`, laat hem één keer afspelen en houd daarna het laatste beeld vast. Gebruik één originele videolaag met een begrensde Canvas-kleurlaag die uit hetzelfde videoframe wordt getekend en alleen rond de pointer zichtbaar is. Buiten de pointer blijft de native video monochroom. Toon de blogindex pas na een klik of via `Intro overslaan`. Gebruik `public/media/atlas-poster.jpg` als fallback en zet `loop` niet aan.
+
+De volledige intro is klikbaar. Elke klik op de intro:
+
+- pauzeert de video;
+- stopt eventuele Canvas-animatie;
+- verwijdert de tijdelijke scroll-lock;
+- laat de intro uitfaden;
+- brengt de bezoeker naar de notitie-index.
+
+De kleine link `Intro overslaan` blijft beschikbaar voor toetsenbordgebruik. Bij `prefers-reduced-motion` wordt de intro direct overgeslagen. Zonder JavaScript blijft de blogindex bereikbaar onder de video.
+
+## Technische vereisten
+
+Gebruik Astro voor de statische basis. Houd de inhoud semantisch en licht. Gebruik native CSS en een kleine hoeveelheid browser-JavaScript. De actieve intro gebruikt geen Bayer-matrix; de pointergloed en originele-kleur-reveal blijven lokale lagen en mogen nooit de H1, navigatie, CTA, notitietekst of artikelinhoud bevatten.
+
+Behoud:
+
+- self-hosted Grenze- en IBM Plex Mono-fonts;
+- de `notes`-contentcollectie en statische artikelroute;
+- metadata voor website- en artikelpagina's;
+- echte hash- en externe links;
+- zichtbare focus states;
+- poster fallback;
+- reduced-motion gedrag;
+- een productiepreview zonder consolefouten.
+
+## Controle
+
+Voer voor elke wijziging uit:
+
+```bash
+npm run check
+npm run build
+```
+
+Controleer daarna in de productiepreview:
+
+- intro vóór het einde van de video;
+- klikken op de intro en op `Intro overslaan`;
+- video-eindstatus, laatste frame en originele-kleur-reveal;
+- de blogindex en de gepubliceerde notitielink;
+- een echte `/notities/[slug]/`-pagina;
+- desktop- en mobiele breedte;
+- toetsenbordfocus, één H1 en reduced-motion gedrag;
+- een lege browserconsole.
+
+Stop niet bij een visuele mockup. Noteer alleen wat in de gebouwde site werkelijk gecontroleerd is.

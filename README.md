@@ -1,6 +1,6 @@
-# Jonathan ND · De Atlas
+# Jonathan ND / Notities
 
-Een persoonlijke atlas voor software, beveiliging, systemen en de vragen waar ik op blijf terugkomen.
+Een blogachtige persoonlijke site voor notities over software, beveiliging, agents en systemen.
 
 ## Lokaal ontwikkelen
 
@@ -17,15 +17,18 @@ npm run build
 npm run preview
 ```
 
-## Bestanden
+## Structuur
 
-De hero gebruikt `public/media/atlas.mp4` en `public/media/atlas-poster.jpg`.
-De video is 1280×720, duurt ongeveer vier seconden en gebruikt H.264. De poster is het laatste beeld van de video en wordt gebruikt bij minder beweging, op mobiele schermen en wanneer het afspelen mislukt.
+De homepage begint met `public/media/atlas.mp4` als schermvullende intro en `public/media/atlas-poster.jpg` als fallback. De video speelt één keer volledig af en blijft daarna op het laatste beeld staan. Alleen een klik op de intro of `Intro overslaan` toont de blogindex.
+
+De blogindex in `src/pages/index.astro` toont gepubliceerde notities uit `src/content/notities/` en lokale ideeën die expliciet als `in opbouw` of `werkprincipe` zijn gemarkeerd. Alleen gepubliceerde notities krijgen een link.
+
+Gepubliceerde artikelen worden statisch opgebouwd onder `/notities/[slug]/` met `src/layouts/NoteLayout.astro`. De inhoudsschema's staan in `src/content.config.ts`. Grenze en IBM Plex Mono worden self-hosted vanuit `public/fonts/`.
 
 Voor de site online gaat:
 
-- vervang de tijdelijke GitHub-link in `src/pages/index.astro` door het contactkanaal dat je wilt gebruiken;
-- voeg alleen gecontroleerde projectlinks en statussen toe;
+- vervang de GitHub-link in `src/pages/index.astro` door het contactkanaal dat je wilt gebruiken;
+- voeg alleen echte notities en gecontroleerde links toe;
 - voeg het productiedomein en de canonical URL toe aan de layout;
-- maak een echte social preview als de SVG-preview niet volstaat;
-- test de uitsnede van de video op de apparaten waarop de site moet werken.
+- controleer de video-uitsnede op de apparaten waarop de site moet werken;
+- controleer zowel de homepage als minstens één `/notities/[slug]/`-pagina in de production preview.

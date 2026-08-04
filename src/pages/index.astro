@@ -1,230 +1,94 @@
 ---
-import SiteLayout from '../layouts/SiteLayout.astro';
 import { getCollection } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
 
-const selectedWork = [
+const drafts = [
   {
-    index: '01',
-    title: 'Agentsystemen',
-    discipline: 'Infrastructuur / open source',
-    status: 'In ontwikkeling',
-    description:
-      'Tools en interfaces voor agents die context kunnen gebruiken, via software kunnen handelen en begrijpelijk blijven wanneer er iets misgaat.',
-    role: 'Ontwikkeling · integratie · systeemdenken',
-    href: 'https://github.com/jonathannd02',
-    label: 'Bekijk GitHub-profiel',
-    external: true,
+    title: 'Eerst bruikbaar, dan indrukwekkend',
+    category: 'systemen / bouwen',
+    status: 'werkprincipe',
   },
   {
-    index: '02',
-    title: 'Applicatiebeveiliging',
-    discipline: 'Onderzoek / veldnotities',
-    status: 'In opbouw',
-    description:
-      'Ik leer door grenzen te testen. Met labs, verslagen en de gewoonte om te controleren wat een systeem echt doet.',
-    role: 'Studie · testen · documentatie',
-    href: '#notes',
-    label: 'Lees de notities',
-    external: false,
-  },
-  {
-    index: '03',
-    title: 'Praktische systemen',
-    discipline: 'Web / automatisering / beheer',
-    status: 'Doorlopend',
-    description:
-      'Kleine systemen die een concreet probleem oplossen. Eerst begrijpen, dan bouwen, daarna testen of het buiten mijn hoofd ook werkt.',
-    role: 'Ontwerp · bouwen · bijsturen',
-    href: '#about',
-    label: 'Zo werk ik',
-    external: false,
+    title: 'Maak zichtbaar wanneer het misgaat',
+    category: 'leren / documenteren',
+    status: 'in opbouw',
   },
 ];
 
 const notes = (await getCollection('notes')).sort((a, b) =>
   a.data.number.localeCompare(b.data.number, 'nl', { numeric: true }),
 );
+
+const formatPublished = (date: Date): string => new Intl.DateTimeFormat('nl-BE', {
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(date);
 ---
 
-<SiteLayout>
-  <div class="site-shell">
-    <section class="hero" id="top" data-hero>
+<SiteLayout
+  title="Jonathan Núñez Dhondt / Notities"
+  description="Notities over software, beveiliging, agents en systemen in opbouw."
+>
+  <div class="site-shell" data-site-shell>
+    <section class="intro" id="intro" data-hero data-intro-screen aria-label="Introductievideo">
       <video
-        class="hero__video"
+        class="intro__video"
         autoplay
         muted
         playsinline
-        preload="metadata"
+        preload="auto"
         poster="/media/atlas-poster.jpg"
         aria-hidden="true"
       >
         <source src="/media/atlas.mp4" type="video/mp4" />
       </video>
-      <canvas class="hero__dither" data-dither aria-hidden="true"></canvas>
-
-      <div class="hero__grade" aria-hidden="true"></div>
-
-      <div class="hero__grain" aria-hidden="true"></div>
-
-      <header class="site-header">
-        <a class="wordmark" href="#top" aria-label="Jonathan Núñez Dhondt, naar boven">JND<span>·</span></a>
-        <nav class="primary-nav" aria-label="Hoofdnavigatie">
-          <a href="#work">Werk</a>
-          <a href="#notes">Notities</a>
-          <a href="#about">Over mij</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <p class="header-status"><span class="status-dot" aria-hidden="true"></span> Gent, BE · aan het bouwen</p>
-      </header>
-
-      <div class="hero__content">
-        <p class="eyebrow hero__eyebrow">JND / DE ATLAS / DEEL 01</p>
-        <h1>
-          Ik breng complexe systemen in kaart
-          <em>en bouw dingen die werken.</em>
-        </h1>
-        <p class="hero__summary">
-          Technische student en bouwer uit Gent. Ik werk aan agentsystemen, applicatiebeveiliging en praktische webproducten.
-        </p>
-        <a class="text-link text-link--hero" href="#work">
-          <span>Bekijk het werk</span>
-          <span class="text-link__arrow" aria-hidden="true">↓</span>
-        </a>
-      </div>
-
-      <div class="hero__identity" aria-label="Identiteit">
-        <span>Jonathan Núñez Dhondt</span>
-        <span>Software · Beveiliging · Systemen</span>
-      </div>
-
-      <div class="hero__scroll" aria-hidden="true">
-        <span>Scroll naar het werk</span>
-        <span class="hero__scroll-line"></span>
-      </div>
+      <canvas class="intro__color-reveal" data-color-reveal aria-hidden="true"></canvas>
+      <div class="intro__grade" aria-hidden="true"></div>
+      <div class="intro__grain" aria-hidden="true"></div>
+      <a class="intro__skip" data-skip-intro href="#posts">Intro overslaan</a>
     </section>
 
-    <main id="main">
-      <section class="work-section" id="work" data-reveal-section>
-        <div class="section-grid section-grid--intro">
-          <p class="section-label">01 / Waar ik nu aan werk</p>
-          <div>
-            <p class="section-lede">De video is de ingang. Hier zie je wat ik bouw, leer en test.</p>
-            <p class="section-copy">
-              Een kort overzicht van waar ik nu mee bezig ben. De projecten veranderen. Ik probeer eerst te begrijpen wat er misgaat en pas daarna iets te bouwen.
-            </p>
-          </div>
-        </div>
+    <main id="main" class="blog-page" tabindex="-1">
+      <header class="blog-header">
+        <h1><a href="#posts">Jonathan Núñez Dhondt</a></h1>
+        <nav aria-label="Blognavigatie">
+          <a href="#posts">notities</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://github.com/jonathannd02" target="_blank" rel="noreferrer">github</a>
+        </nav>
+      </header>
 
-        <div class="work-list" role="list">
-          {selectedWork.map((item) => (
-            <article class="work-row" role="listitem" data-work-item={item.index} tabindex="0">
-              <span class="work-row__index">{item.index}</span>
-              <div class="work-row__title">
-                <p class="work-row__discipline">{item.discipline}</p>
-                <h2>{item.title}</h2>
-                <p class="work-row__status"><span></span>{item.status}</p>
-              </div>
-              <div class="work-row__detail">
-                <p>{item.description}</p>
-                <p class="work-row__role">{item.role}</p>
-                <a
-                  class="row-link"
-                  href={item.href}
-                  target={item.external ? '_blank' : undefined}
-                  rel={item.external ? 'noreferrer' : undefined}
-                >
-                  {item.label} <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <section class="posts-section" id="posts" aria-labelledby="posts-title">
+        <h2 id="posts-title">notities</h2>
 
-      <section class="notes-section" id="notes" data-reveal-section>
-        <div class="notes-section__top section-grid">
-          <p class="section-label section-label--dark">02 / Veldnotities</p>
-          <div>
-            <p class="section-lede section-lede--dark">Vragen waar ik op terugkom.</p>
-            <p class="section-copy section-copy--dark">
-              Veldnotities over software, beveiliging, leren en wat er gebeurt wanneer iets niet werkt.
-            </p>
-          </div>
-        </div>
-
-        <ol class="notes-list">
+        <ul class="post-list">
           {notes.map((note) => (
-            <li>
-              <a class="note-row" href={`/notities/${note.id}/`}>
-                <span class="note-row__number">{note.data.number}</span>
-                <span class="note-row__type">{note.data.category}</span>
-                <span class="note-row__title">{note.data.title}</span>
-                <span class="note-row__meta">Veldnotitie / {note.data.published.getUTCFullYear()}</span>
-                <span class="note-row__arrow" aria-hidden="true">→</span>
-              </a>
+            <li class="post-item">
+              <span class="post-item__status">gepubliceerd</span>
+              <div>
+                <h3>
+                  <a class="post-item__link" href={`/notities/${note.id}/`}>{note.data.title}</a>
+                </h3>
+                <p>{note.data.category} / {formatPublished(note.data.published)}</p>
+              </div>
             </li>
           ))}
-        </ol>
-      </section>
 
-      <section class="about-section" id="about" data-reveal-section>
-        <div class="section-grid section-grid--about">
-          <p class="section-label">03 / Over mij</p>
-          <div class="about-layout">
-            <figure class="about-portrait">
-              <div class="about-portrait__frame" data-portrait-frame>
-                <picture>
-                  <source srcset="/media/jonathan-portrait.webp" type="image/webp" />
-                  <img
-                    src="/media/jonathan-portrait.png"
-                    alt="Portret van Jonathan Núñez Dhondt aan een werktafel met kaarten, boeken en een globe."
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <canvas class="about-portrait__dither" data-portrait-dither aria-hidden="true"></canvas>
+          {drafts.map((draft) => (
+            <li class="post-item">
+              <span class="post-item__status">{draft.status}</span>
+              <div>
+                <h3>{draft.title}</h3>
+                <p>{draft.category}</p>
               </div>
-              <figcaption>
-                <span>JND / GENT / DEEL 01</span>
-                <span>STUDIE · SYSTEMEN · BEVEILIGING</span>
-              </figcaption>
-            </figure>
+            </li>
+          ))}
+        </ul>
 
-            <div class="about-copy">
-              <p class="about-lede">Ik hou van het moment waarop iets ingewikkelds bruikbaar wordt.</p>
-              <p>
-                Ik ben Jonathan, een technische student en bouwer uit Gent. Ik beweeg tussen software, beveiliging, systemen en ontwerp. Meestal begin ik met een vaag probleem en blijf ik eraan werken tot ik genoeg begrijp om iets te bouwen.
-              </p>
-              <p>
-                Ik verkies bewijs boven theater, een werkend prototype boven een perfect plan en gereedschap dat de volgende beslissing makkelijker maakt. Deze site is een levende index van waar ik mee bezig ben, geen afgewerkt verhaal.
-              </p>
-              <div class="about-facts" aria-label="Huidige feiten">
-                <div><span>In</span><strong>Gent, België</strong></div>
-                <div><span>Werkgebied</span><strong>Software · beveiliging · agents</strong></div>
-                <div><span>Nu</span><strong>Studeren · bouwen · testen</strong></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact-section" id="contact" data-reveal-section>
-        <div class="contact-section__inner">
-          <p class="section-label section-label--dark">04 / Neem contact op</p>
-          <h2>Iets bouwen of uitzoeken?</h2>
-          <p>Voor een project, een technische vraag of om iets samen uit te zoeken. Voorlopig is GitHub de beste plek om me te bereiken.</p>
-          <a class="contact-link" href="https://github.com/jonathannd02" target="_blank" rel="noreferrer">
-            Ga naar GitHub <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+        <p class="posts-note">Twee ideeën staan nog in opbouw.</p>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <span>JND / DE ATLAS / DEEL 01</span>
-      <span>© {new Date().getFullYear()} Jonathan Núñez Dhondt</span>
-      <a href="#top">Terug naar boven ↑</a>
-    </footer>
   </div>
   <script src="../scripts/site.ts"></script>
 </SiteLayout>
