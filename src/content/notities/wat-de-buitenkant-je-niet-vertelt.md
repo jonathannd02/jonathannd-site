@@ -4,8 +4,6 @@ description: Over zichtbare interfaces, onzichtbare vertrouwensgrenzen en de vra
 number: '01'
 category: Beveiliging
 published: 2026-08-04
-cover: /media/atlas-poster.jpg
-coverAlt: Een nachtelijke stad, teruggebracht tot zwarte en donkerrode rastertonen.
 ---
 
 Een interface kan rustig, beperkt en logisch aanvoelen terwijl het onderliggende systeem veel meer accepteert. Wie alleen naar de buitenkant kijkt, ziet het ontwerp. Wie de grens onderzoekt, ziet de beslissingen.

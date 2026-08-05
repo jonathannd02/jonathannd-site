@@ -15,20 +15,46 @@ const published = new Intl.DateTimeFormat('nl-BE', {
   year: 'numeric',
   timeZone: 'UTC',
 }).format(note.data.published);
-const coverStyle = `--note-cover-image: url('${note.data.cover}')`;
+const fallbackCover = '/media/atlas-poster.jpg';
+const coverImages = import.meta.glob('../content/notities/**/*.{avif,jpeg,jpg,png,webp}', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+}) as Record<string, string>;
+const coverExtensions = ['avif', 'jpeg', 'jpg', 'png', 'webp'];
+const noteId = note.id.toLowerCase();
+const coverCandidates = Object.entries(coverImages).filter(([path]) =>
+  coverExtensions.some((extension) => path.toLowerCase().endsWith(`/${noteId}.${extension}`)),
+);
+
+if (coverCandidates.length > 1) {
+  throw new Error(
+    `Notitie "${note.id}" heeft meer dan één gekoppelde afbeelding. Bewaar maximaal één bestand met dezelfde naam als de notitie.`,
+  );
+}
+
+const noteCover = coverCandidates[0]?.[1];
+if (noteCover && !note.data.coverAlt) {
+  throw new Error(
+    `Notitie "${note.id}" heeft een gekoppelde afbeelding. Voeg "coverAlt" toe aan de frontmatter.`,
+  );
+}
+
+const coverSrc = noteCover ?? fallbackCover;
+const coverStyle = `--note-cover-image: url(${JSON.stringify(coverSrc)})`;
 ---
 
 <SiteLayout
   title={`${note.data.title} · De Atlas`}
   description={note.data.description}
-  image={note.data.cover}
+  image={coverSrc}
   type="article"
   publishedTime={note.data.published}
 >
   <div class="note-page">
     <header class="note-header">
       <a class="note-wordmark" href="/" aria-label="Jonathan Núñez Dhondt, naar de startpagina">JND<span>·</span></a>
-      <a class="note-header__back" href="/#notes"><span aria-hidden="true">←</span> Veldnotities</a>
+      <a class="note-header__back" href="/#posts"><span aria-hidden="true">←</span> Veldnotities</a>
       <p>{note.data.category} / De Atlas</p>
     </header>
 
@@ -47,8 +73,9 @@ const coverStyle = `--note-cover-image: url('${note.data.cover}')`;
         <div
           class="note-cover__visual"
           style={coverStyle}
-          role="img"
-          aria-label={note.data.coverAlt}
+          role={noteCover ? 'img' : undefined}
+          aria-label={noteCover ? note.data.coverAlt : undefined}
+          aria-hidden={noteCover ? undefined : 'true'}
         >
           <div class="note-cover__visual-image" aria-hidden="true"></div>
           <span aria-hidden="true">{note.data.number}</span>
@@ -69,7 +96,7 @@ const coverStyle = `--note-cover-image: url('${note.data.cover}')`;
           </a>
         ) : <span class="note-pagination__empty" aria-hidden="true"></span>}
 
-        <a class="note-pagination__index" href="/#notes">Alle veldnotities</a>
+        <a class="note-pagination__index" href="/#posts">Alle veldnotities</a>
 
         {next ? (
           <a class="note-pagination__next" href={`/notities/${next.id}/`}>
